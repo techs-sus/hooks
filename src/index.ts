@@ -1,7 +1,7 @@
 const printf = (s: string, ...s1: string[]) => print(string.format(s, ...s1));
 
 class hookManager {
-	hooks: {
+	private hooks: {
 		[key: string]: {
 			func: Callback;
 			dependencies: string[];
@@ -16,7 +16,7 @@ class hookManager {
 		};
 		if (event !== undefined) {
 			event.Connect(fire);
-			printf("[hook] %s is connected to an RBXScriptSignal", hookName);
+			printf("[hook] %s is para-connected to an RBXScriptSignal", hookName);
 		} else {
 			printf("[hook] Added: %s", hookName);
 		}
