@@ -9,10 +9,11 @@ class hookManager {
 	} = {};
 	public addHook(hookName: string, callback: Callback, dependencies: string[], event?: RBXScriptSignal) {
 		const fire = (...args: unknown[]) => {
+			const ret: unknown = callback(...args);
+			// pass on the return value of the cb
 			for (const dependency of dependencies) {
-				this.fireHook(dependency, ...args);
+				this.fireHook(dependency, ret);
 			}
-			callback(...args);
 		};
 		if (event !== undefined) {
 			event.Connect(fire);
